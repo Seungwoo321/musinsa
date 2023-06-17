@@ -1,0 +1,25 @@
+import React from 'react'
+import Logo from '../assets/logo_musinsa.svg'
+import styled from '@emotion/styled'
+
+const StyledBar = styled.div`
+    position: relative;
+    min-width: 375px;
+    width: 100%;
+    height: 50px;
+    padding: 8px 0;
+`
+
+const styledLogo = styled.image`
+
+`
+
+export default function AppBar () {
+    return (
+        <header>
+            <StyledBar>
+                <img src={Logo} />
+            </StyledBar>
+        </header>
+    )
+}
