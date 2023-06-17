@@ -55,6 +55,7 @@ export default function ProductList ({ list }) {
                             </div>
                             <div
                                 css={css`
+                                    line-break: anywhere;
                                     font-weight: bold;
                                     margin: 4px 0;
                                 `}
@@ -86,8 +87,7 @@ export default function ProductList ({ list }) {
                                 </span>
                             </div>
                             <small
-                                css={css`
-                                    ${'' /* font-size: 11px; */}
+                                css={css` */}
                                     text-decoration: line-through;
                                     color: #aaa;
                                     line-height: 11.55px;
