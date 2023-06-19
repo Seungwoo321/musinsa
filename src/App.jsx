@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AppBar from './components/AppBar'
 import MenuFilter from './components/MenuFilter'
+import MenuSearch from './components/MenuSearch'
 import ProductList from './components/ProductList'
 import { fetchGoods } from './api.js'
 function App () {
@@ -17,6 +18,7 @@ function App () {
             <MenuFilter
                 onFilter={handleFilter}
             />
+            <MenuSearch />
             <ProductList
                 list={goods}
             />
