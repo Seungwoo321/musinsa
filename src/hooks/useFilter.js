@@ -3,7 +3,7 @@ import { ACTION_TYPE } from '../constants'
 
 const useFilter = () => {
     const initialState = {
-        filterCallback: filterFunc.default,
+        filterCallback: defaultFilter,
         activeFilters: []
     }
     const [filterState, dispatch] = useReducer(reducer, initialState)
@@ -17,20 +17,21 @@ const useFilter = () => {
         }, [])
     }
 }
-const filterFunc = {
-    sale: item => item.isSale && !item.isSoldOut,
-    exclusive: item => item.isExclusive && !item.isSoldOut,
-    soldOut: item => item.isSoldOut,
-    default: item => !item.isSoldOut
-}
+const defaultFilter = item => !item.isSoldOut
+
 function makeFilterState (activeFilters, filterKey, isAdd = false) {
     const newActiveFilters = [...activeFilters.filter(value => value !== filterKey)]
     if (isAdd) newActiveFilters.push(filterKey)
+    const filterFunc = {
+        sale: item => item.isSale && (newActiveFilters.includes('soldOut') ? item.isSoldOut : !item.isSoldOut),
+        exclusive: item => item.isExclusive && (newActiveFilters.includes('soldOut') ? item.isSoldOut : !item.isSoldOut),
+        soldOut: item => item.isSoldOut
+    }
     return {
         activeFilters: newActiveFilters,
         filterCallback: newActiveFilters.length
             ? item => newActiveFilters.every(key => filterFunc[key](item))
-            : filterFunc.default
+            : defaultFilter
     }
 }
 function reducer (state, action) {
