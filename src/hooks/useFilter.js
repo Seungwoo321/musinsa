@@ -29,7 +29,7 @@ function makeFilterState (activeFilters, filterKey, isAdd = false) {
     return {
         activeFilters: newActiveFilters,
         filterCallback: newActiveFilters.length
-            ? item => newActiveFilters.some(key => filterFunc[key](item))
+            ? item => newActiveFilters.every(key => filterFunc[key](item))
             : filterFunc.default
     }
 }

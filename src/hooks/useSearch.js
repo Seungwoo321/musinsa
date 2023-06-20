@@ -34,7 +34,7 @@ function makeSearchState (activeKeywords, keyword, isAdd = false) {
     return {
         activeKeywords: newActiveKeywords,
         searchCallback: newActiveKeywords.length
-            ? item => newActiveKeywords.some(keyword => item.goodsName.includes(keyword))
+            ? item => newActiveKeywords.every(keyword => item.goodsName.includes(keyword))
             : defaultFilter
     }
 }
