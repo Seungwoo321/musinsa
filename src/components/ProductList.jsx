@@ -4,6 +4,7 @@ import { css } from '@emotion/react'
 import { array, bool } from 'prop-types'
 import { NO_IMAGE_URL } from '../constants'
 import Empty from './Empty'
+import ExclusiveLabel from './ExclusiveLabel'
 export default function ProductList ({ list, openFilterArea, openSearchArea }) {
     const marginTop = 115 + (openFilterArea ? 50 : 0) + (openSearchArea ? 80 : 0)
     if (!list.length) {
@@ -54,6 +55,7 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                                 onError={e => (e.target.src = NO_IMAGE_URL)}
                             />
                             {item.isSoldOut ? <SoldOutOverlay /> : null}
+                            {item.isExclusive ? <ExclusiveLabel /> : null}
                         </div>
 
                         <div
@@ -65,7 +67,7 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                                 css={css`
                                     font-size: 11px;
                                     line-height: 16px;
-                                    margin: 4px 0;
+                                    margin: 20px 0 0 0;
                                 `}
                             >
                                 {item.brandName}
