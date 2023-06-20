@@ -62,7 +62,7 @@ export default function MenuFilterSearchArea ({ searchText, open, openFilterArea
     )
 }
 
-MenuFilterSearchArea.proptype = {
+MenuFilterSearchArea.propTypes = {
     searchText: string,
     open: bool,
     openFilterArea: bool,

@@ -42,7 +42,7 @@ export default function AutoComplte ({ completeNames, searchText }) {
     )
 }
 
-AutoComplte.proptype = {
+AutoComplte.propTypes = {
     completeNames: array,
     searchText: string
 }

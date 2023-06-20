@@ -26,11 +26,11 @@ export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords
             <Button
                 round
                 accent={isSearchArea}
-                active={activeKeywords.length}
+                active={activeKeywords.length > 0}
                 onClick={toggleSearchArea}
             >
                 {filterLabel.search}
-                <Icon name="Search" size="16" style={{ verticalAlign: 'middle', marginLeft: '6px' }} />
+                <Icon name="Search" size={16} style={{ verticalAlign: 'middle', marginLeft: '6px' }} />
             </Button>
             <Button
                 round
@@ -56,7 +56,7 @@ export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords
         </StyledMenuFilter>
     )
 }
-MenuFilter.proptype = {
+MenuFilter.propTypes = {
     filterLabel: object,
     activeFilters: array,
     activeKeywords: array,

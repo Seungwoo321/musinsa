@@ -9,6 +9,7 @@ import { FILTER_LABEL } from './constants'
 import { fetchGoods } from './api.js'
 import useFilter from './hooks/useFilter.js'
 import useSearch from './hooks/useSearch.js'
+
 function App () {
     const [list, setList] = useState([])
     const { filterCallback, activeFilters, onAddFilter, onRemoveFilter } = useFilter()
@@ -31,7 +32,6 @@ function App () {
         }
     }, [setList])
     const filterList = list.filter(filterCallback).filter(searchCallback)
-    console.log(filterList)
     return (
         <>
             <AppBar />

@@ -20,7 +20,7 @@ export default function AppBar () {
                     padding: 1rem;
                 `}
             >
-                <img src={Logo} className="logo" />
+                <img src={Logo} className="logo" alt="MUSINAT" />
             </div>
         </header>
     )

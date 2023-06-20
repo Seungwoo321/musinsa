@@ -3,18 +3,30 @@ import SoldOutOverlay from './SoldOutOverlay'
 import { css } from '@emotion/react'
 import { array, bool } from 'prop-types'
 import { NO_IMAGE_URL } from '../constants'
+import Empty from './Empty'
 export default function ProductList ({ list, openFilterArea, openSearchArea }) {
+    const marginTop = 115 + (openFilterArea ? 50 : 0) + (openSearchArea ? 80 : 0)
     if (!list.length) {
         return (
-            <div>Empty data</div>
+            <div
+                css={css`
+                background: #fff;
+                margin-top: ${marginTop}px;
+                height: calc(100vh - ${marginTop}px)
+            `}
+            >
+                <Empty />
+            </div>
         )
     }
     return (
         <div
             css={css`
-                margin-top: ${120 + (openFilterArea ? 50 : 0) + (openSearchArea ? 80 : 0)}px;
+                background: #fff;
+                margin-top: ${marginTop}px;
                 display: flex;
                 flex-wrap: wrap;
+                min-height: calc(100vh - ${marginTop}px)
             `}
         >
             {list.map(item => {
@@ -33,11 +45,12 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                         >
                             <img
                                 css={css`
-                                width: 100%;
-                                margin: 0 auto;
-                                object-fit: cover;
-                            `}
+                                    width: 100%;
+                                    margin: 0 auto;
+                                    object-fit: cover;
+                                `}
                                 src={item.imageUrl}
+                                alt={item.goodsName}
                                 onError={e => (e.target.src = NO_IMAGE_URL)}
                             />
                             {item.isSoldOut ? <SoldOutOverlay /> : null}
@@ -118,7 +131,7 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
     )
 }
 
-ProductList.proptype = {
+ProductList.propTypes = {
     list: array,
     openFilterArea: bool,
     openSearchArea: bool

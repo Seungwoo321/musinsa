@@ -35,7 +35,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                         accent
                     >
                         {key}
-                        <Icon name="Close" size="10" style={{ marginLeft: '6px' }} onClick={() => handleRemoveSearchFilter(key)} />
+                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => handleRemoveSearchFilter(key)} />
                     </Button>
                 )
             })}
@@ -49,7 +49,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                         accent
                     >
                         {filterLabel[key]}
-                        <Icon name="Close" size="10" style={{ marginLeft: '6px' }} onClick={() => handleRemoveFilter(key)} />
+                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => handleRemoveFilter(key)} />
                     </Button>
                 )
             })}
@@ -57,7 +57,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
     )
 }
 
-MenuFilterArea.proptype = {
+MenuFilterArea.propTypes = {
     filterLabel: object,
     activeFilters: array,
     activeKeywords: array,

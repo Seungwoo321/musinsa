@@ -11,6 +11,7 @@ export default function Icon ({ name, style, size = 16, onClick }) {
     return (
         <img
             src={icons[name]}
+            alt={name}
             style={style}
             width={size}
             height={size}
@@ -19,7 +20,7 @@ export default function Icon ({ name, style, size = 16, onClick }) {
     )
 }
 
-Icon.proptype = {
+Icon.propTypes = {
     name: string,
     style: object,
     size: number,

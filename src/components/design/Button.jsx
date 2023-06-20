@@ -50,7 +50,7 @@ export default function Button ({ active, accent, round, small, children, onClic
     )
 }
 
-Button.proptype = {
+Button.propTypes = {
     active: bool,
     accent: bool,
     round: bool,
