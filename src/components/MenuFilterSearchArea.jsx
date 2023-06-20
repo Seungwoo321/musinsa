@@ -1,8 +1,9 @@
 import { css } from '@emotion/react'
 import React from 'react'
 import Icon from './design/Icon'
-import { bool, string, func } from 'prop-types'
-export default function MenuFilterSearchArea ({ searchText, open, openFilterArea, onInputSearch, onAddSearchFilter }) {
+import { bool, string, func, node } from 'prop-types'
+
+export default function MenuFilterSearchArea ({ searchText, open, openFilterArea, onInputSearch, onAddSearchFilter, children }) {
     const handleInput = e => {
         onInputSearch(e.target.value)
     }
@@ -56,6 +57,7 @@ export default function MenuFilterSearchArea ({ searchText, open, openFilterArea
                     <Icon name="Search" size={20} style={{ verticalAlign: 'middle' }} />
                 </span>
             </form>
+            {children}
         </div>
     )
 }
@@ -64,5 +66,7 @@ MenuFilterSearchArea.proptype = {
     searchText: string,
     open: bool,
     openFilterArea: bool,
-    onInputSearch: func
+    onInputSearch: func,
+    onAddSearchFilter: func,
+    children: node
 }

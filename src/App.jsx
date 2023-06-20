@@ -3,6 +3,7 @@ import AppBar from './components/AppBar'
 import MenuFilter from './components/MenuFilter'
 import MenuFilterArea from './components/MenuFilterArea'
 import MenuFilterSearchArea from './components/MenuFilterSearchArea'
+import AutoComplete from './components/AutoComplete'
 import ProductList from './components/ProductList'
 import { FILTER_LABEL } from './constants'
 import { fetchGoods } from './api.js'
@@ -11,7 +12,17 @@ import useSearch from './hooks/useSearch.js'
 function App () {
     const [list, setList] = useState([])
     const { filterCallback, activeFilters, onAddFilter, onRemoveFilter } = useFilter()
-    const { searchCallback, activeKeywords, searchText, isSearchArea, toggleSearchArea, onInputSearch, onAddSearchFilter, onRemoveSearchFilter } = useSearch()
+    const {
+        searchCallback,
+        activeKeywords,
+        searchText,
+        isSearchArea,
+        toggleSearchArea,
+        onInputSearch,
+        onAddSearchFilter,
+        onRemoveSearchFilter
+    } = useSearch()
+
     useEffect(() => {
         return () => {
             fetchGoods(0).then(result => {
@@ -19,6 +30,8 @@ function App () {
             })
         }
     }, [setList])
+    const filterList = list.filter(filterCallback).filter(searchCallback)
+    console.log(filterList)
     return (
         <>
             <AppBar />
@@ -44,11 +57,16 @@ function App () {
                 openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
                 onInputSearch={onInputSearch}
                 onAddSearchFilter={onAddSearchFilter}
-            />
+            >
+                <AutoComplete
+                    completeNames={filterList.map(item => item.goodsName)}
+                    searchText={searchText}
+                />
+            </MenuFilterSearchArea>
             <ProductList
                 openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
                 openSearchArea={isSearchArea}
-                list={(list.filter(filterCallback)).filter(searchCallback)}
+                list={filterList}
             />
         </>
     )
