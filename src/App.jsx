@@ -27,6 +27,16 @@ function App () {
         onAddSearchFilter,
         onRemoveSearchFilter
     } = useSearch()
+    const filterList = list.filter(filterCallback).filter(searchCallback)
+
+    useEffect(() => {
+        return () => {
+            fetchGoods(0).then(result => {
+                setList(result.list)
+            })
+        }
+    }, [setList])
+
     const handleInfiniteScroll = () => {
         if (currentRequest + 1 === MAX_REQUST) return
         setTimeout(() => {
@@ -37,14 +47,7 @@ function App () {
         }, 1000)
     }
     useInfiniteScroll(handleInfiniteScroll)
-    useEffect(() => {
-        return () => {
-            fetchGoods(0).then(result => {
-                setList(result.list)
-            })
-        }
-    }, [setList])
-    const filterList = list.filter(filterCallback).filter(searchCallback)
+
     return (
         <>
             <AppBar />
