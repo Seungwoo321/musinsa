@@ -1,32 +1,14 @@
 import { useCallback, useReducer } from 'react'
 import { ACTION_TYPE } from '../constants'
 
-const useSearch = () => {
-    const initialState = {
-        searchText: '',
-        activeKeywords: [],
-        isSearchArea: false,
-        searchCallback: defaultFilter
-    }
-    const [searchState, dispatch] = useReducer(reducer, initialState)
-    return {
-        ...searchState,
-        toggleSearchArea: useCallback(() => {
-            dispatch({ type: ACTION_TYPE.TOGGLE_SEARCH_AREA })
-        }, []),
-        onInputSearch: useCallback(keyword => {
-            dispatch({ type: ACTION_TYPE.INPUT_SEARCH_TEXT, keyword })
-        }, []),
-        onAddSearchFilter: useCallback(keyword => {
-            dispatch({ type: ACTION_TYPE.INPUT_SEARCH_TEXT, keyword: '' })
-            dispatch({ type: ACTION_TYPE.ADD_SEARCH_FILTER, keyword })
-        }, []),
-        onRemoveSearchFilter: useCallback(keyword => {
-            dispatch({ type: ACTION_TYPE.REMOVE_SEARCH_FILTER, keyword })
-        }, [])
-    }
-}
 const defaultFilter = () => true
+
+const initialState = {
+    searchText: '',
+    activeKeywords: [],
+    isSearchArea: false,
+    searchCallback: defaultFilter
+}
 
 function makeSearchState (activeKeywords, keyword, isAdd = false) {
     const newActiveKeywords = [...activeKeywords.filter(value => value !== keyword)]
@@ -38,6 +20,7 @@ function makeSearchState (activeKeywords, keyword, isAdd = false) {
             : defaultFilter
     }
 }
+
 function reducer (state, action) {
     switch (action.type) {
     case ACTION_TYPE.ADD_SEARCH_FILTER:
@@ -62,6 +45,30 @@ function reducer (state, action) {
         }
     default:
         return state
+    }
+}
+
+const useSearch = () => {
+    const [searchState, dispatch] = useReducer(reducer, initialState)
+    const toggleSearchArea = useCallback(() => {
+        dispatch({ type: ACTION_TYPE.TOGGLE_SEARCH_AREA })
+    }, [])
+    const onInputSearch = useCallback(keyword => {
+        dispatch({ type: ACTION_TYPE.INPUT_SEARCH_TEXT, keyword })
+    }, [])
+    const onAddSearchFilter = useCallback(keyword => {
+        dispatch({ type: ACTION_TYPE.INPUT_SEARCH_TEXT, keyword: '' })
+        dispatch({ type: ACTION_TYPE.ADD_SEARCH_FILTER, keyword })
+    }, [])
+    const onRemoveSearchFilter = useCallback(keyword => {
+        dispatch({ type: ACTION_TYPE.REMOVE_SEARCH_FILTER, keyword })
+    }, [])
+    return {
+        ...searchState,
+        toggleSearchArea,
+        onInputSearch,
+        onAddSearchFilter,
+        onRemoveSearchFilter
     }
 }
 

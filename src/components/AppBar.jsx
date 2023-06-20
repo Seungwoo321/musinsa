@@ -10,7 +10,7 @@ export default function AppBar () {
                 top: 0;
                 right: 0;
                 background-color: #fff;
-                z-index: 2;
+                z-index: 3;
             `}
         >
             <div css={css`

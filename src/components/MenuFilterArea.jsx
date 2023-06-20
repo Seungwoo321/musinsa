@@ -16,7 +16,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
             css={css`
                 display: ${(activeFilters.length || activeKeywords.length) ? 'block' : 'none'};
                 position: fixed;
-                z-index: 2;
+                z-index: 3;
                 top: 105px;
                 left: 0;
                 right: 0;

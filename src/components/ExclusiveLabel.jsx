@@ -5,7 +5,7 @@ export default function ExclusiveLabel () {
     return (
         <div
             css={css`
-                z-index: 3;
+                z-index: 2;
                 padding: 4px 6px;
                 line-height: 18px;
                 font-size: 12px;

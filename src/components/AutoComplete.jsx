@@ -21,14 +21,14 @@ export default function AutoComplte ({ completeNames, searchText }) {
                     overflow: scroll;
                 `}
         >
-            {completeNames.filter(name => searchText !== '' && name.match(regex)).map(name => {
+            {completeNames.filter(name => searchText !== '' && name.match(regex)).map((name, index) => {
                 return (
                     <li
                         css={css`
                                 padding: 10px;
                                 font-size: 14px;
                             `}
-                        key={name}
+                        key={index}
                     >
                         <span
                             dangerouslySetInnerHTML={{

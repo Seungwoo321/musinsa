@@ -5,6 +5,7 @@ import { array, bool } from 'prop-types'
 import { NO_IMAGE_URL } from '../constants'
 import Empty from './Empty'
 import ExclusiveLabel from './ExclusiveLabel'
+
 export default function ProductList ({ list, openFilterArea, openSearchArea }) {
     const marginTop = 115 + (openFilterArea ? 50 : 0) + (openSearchArea ? 80 : 0)
     if (!list.length) {
@@ -30,10 +31,10 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                 min-height: calc(100vh - ${marginTop}px)
             `}
         >
-            {list.map(item => {
+            {list.map((item, index) => {
                 return (
                     <div
-                        key={item.goodsNo}
+                        key={index}
                         css={css`
                             background: #fff;
                             flex-basis: calc(50%);

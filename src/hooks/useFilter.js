@@ -1,23 +1,12 @@
 import { useCallback, useReducer } from 'react'
 import { ACTION_TYPE } from '../constants'
 
-const useFilter = () => {
-    const initialState = {
-        filterCallback: defaultFilter,
-        activeFilters: []
-    }
-    const [filterState, dispatch] = useReducer(reducer, initialState)
-    return {
-        ...filterState,
-        onAddFilter: useCallback(filterKey => {
-            dispatch({ type: ACTION_TYPE.ADD_FILTER, filterKey })
-        }, []),
-        onRemoveFilter: useCallback(filterKey => {
-            dispatch({ type: ACTION_TYPE.REMOVE_FILTER, filterKey })
-        }, [])
-    }
-}
 const defaultFilter = item => !item.isSoldOut
+
+const initialState = {
+    filterCallback: defaultFilter,
+    activeFilters: []
+}
 
 function makeFilterState (activeFilters, filterKey, isAdd = false) {
     const newActiveFilters = [...activeFilters.filter(value => value !== filterKey)]
@@ -48,6 +37,21 @@ function reducer (state, action) {
         }
     default:
         return state
+    }
+}
+
+const useFilter = () => {
+    const [filterState, dispatch] = useReducer(reducer, initialState)
+    const onAddFilter = useCallback(filterKey => {
+        dispatch({ type: ACTION_TYPE.ADD_FILTER, filterKey })
+    }, [])
+    const onRemoveFilter = useCallback(filterKey => {
+        dispatch({ type: ACTION_TYPE.REMOVE_FILTER, filterKey })
+    }, [])
+    return {
+        ...filterState,
+        onAddFilter,
+        onRemoveFilter
     }
 }
 

@@ -5,13 +5,17 @@ import MenuFilterArea from './components/MenuFilterArea'
 import MenuFilterSearchArea from './components/MenuFilterSearchArea'
 import AutoComplete from './components/AutoComplete'
 import ProductList from './components/ProductList'
+import LoadingSpinner from './components/LoadingSpinner'
 import { FILTER_LABEL } from './constants'
 import { fetchGoods } from './api.js'
 import useFilter from './hooks/useFilter.js'
 import useSearch from './hooks/useSearch.js'
+import useInfiniteScroll from './hooks/useInfiniteScroll'
 
 function App () {
+    const MAX_REQUST = 4
     const [list, setList] = useState([])
+    const [currentRequest, setCurrentRequest] = useState(0)
     const { filterCallback, activeFilters, onAddFilter, onRemoveFilter } = useFilter()
     const {
         searchCallback,
@@ -23,7 +27,16 @@ function App () {
         onAddSearchFilter,
         onRemoveSearchFilter
     } = useSearch()
-
+    const handleInfiniteScroll = () => {
+        if (currentRequest + 1 === MAX_REQUST) return
+        setTimeout(() => {
+            setCurrentRequest(currentRequest + 1)
+            fetchGoods(currentRequest + 1).then(result => {
+                setList(list.concat(result.list))
+            })
+        }, 1000)
+    }
+    useInfiniteScroll(handleInfiniteScroll)
     useEffect(() => {
         return () => {
             fetchGoods(0).then(result => {
@@ -68,6 +81,7 @@ function App () {
                 openSearchArea={isSearchArea}
                 list={filterList}
             />
+            {currentRequest + 1 < MAX_REQUST ? <LoadingSpinner /> : null}
         </>
     )
 }

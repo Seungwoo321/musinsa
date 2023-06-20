@@ -5,7 +5,7 @@ import Icon from './design/Icon'
 import { array, object, func, bool } from 'prop-types'
 const StyledMenuFilter = styled.div`
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     top: 50px;
     left: 0;
     right: 0;

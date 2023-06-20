@@ -17,7 +17,7 @@ export default function MenuFilterSearchArea ({ searchText, open, openFilterArea
             css={css`
                 display: ${open ? 'block' : 'none'};
                 position: fixed;
-                z-index: 2;
+                z-index: 3;
                 top: ${105 + (openFilterArea ? 50 : 0)}px;
                 left: 0;
                 right: 0;
