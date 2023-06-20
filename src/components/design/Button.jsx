@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/react'
-import { string, node, bool } from 'prop-types'
-import Icon from '../design/Icon'
+import { node, bool, func } from 'prop-types'
+// import Icon from '../design/Icon'
 
 const defaultStyle = css`
     padding: 7px 15px;
@@ -10,32 +10,47 @@ const defaultStyle = css`
     color: #000;
     border: 1px solid #eee;
     background: #fff;
-    border-radius: 18px;
-    margin-right: 5px;
+    border-radius: 4px;
+    margin-left: 5px;
     cursor: pointer;
+    height: 35px;
 `
-const activeStyle = css`
+const accentStyle = css`
     color: #fff;
     background: #0078ff;
 `
-export default function Button ({ icon, active, children }) {
+const activeStyle = css`
+    color: #0078ff
+`
+const roundStyle = css`
+    border-radius: 18px;
+`
+const smallStyle = css`
+    padding: 4px 10px;
+    font-size: 12px;
+    line-height: 18px;
+    height: 26px;
+`
+export default function Button ({ active, accent, children, onClick, round, small }) {
     return (
         <button
             css={[
                 defaultStyle,
-                active ? activeStyle : null
+                active ? activeStyle : null,
+                accent ? accentStyle : null,
+                round ? roundStyle : null,
+                small ? smallStyle : null
             ]}
+            onClick={onClick}
         >
             {children}
-            {icon
-                ? (<Icon name={icon} style={{ verticalAlign: 'middle', marginLeft: '6px' }} size={16} />)
-                : null}
         </button>
     )
 }
 
 Button.proptype = {
-    icon: string,
     active: bool,
-    children: node
+    accent: bool,
+    children: node,
+    onClick: func
 }

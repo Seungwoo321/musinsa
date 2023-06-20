@@ -1,6 +1,8 @@
 import { css } from '@emotion/react'
 import React from 'react'
-export default function ProductList ({ list }) {
+import { array, bool } from 'prop-types'
+import SoldoutOverlay from './SoldOutOverlay'
+export default function ProductList ({ list, showFilterArea, showSearchArea }) {
     if (!list.length) {
         return (
             <div>Empty data</div>
@@ -12,7 +14,7 @@ export default function ProductList ({ list }) {
     return (
         <div
             css={css`
-                margin-top: 120px;
+                margin-top: ${120 + (showFilterArea ? 50 : 0) + (showSearchArea ? 80 : 0)}px;
                 display: flex;
                 flex-wrap: wrap;
             `}
@@ -24,21 +26,25 @@ export default function ProductList ({ list }) {
                         css={css`
                             background: #fff;
                             flex-basis: calc(50%);
-                            ${'' /* height: 226px; */}
-                            ${'' /* flex: 1 0 50%; */}
                         `}
                     >
-                        <img
+                        <div
                             css={css`
-
-                                width: 100%;
-                                margin: 0 auto;
-                                object-fit: cover;
+                                position: relative;
                             `}
-                            // height="220px"
-                            src={item.imageUrl}
-                            onError={handlerImgError}
-                        />
+                        >
+                            <img
+                                css={css`
+                            width: 100%;
+                            margin: 0 auto;
+                            object-fit: cover;
+                        `}
+                                src={item.imageUrl}
+                                onError={handlerImgError}
+                            />
+                            {item.isSoldOut ? <SoldoutOverlay /> : null}
+                        </div>
+
                         <div
                             css={css`
                                 padding: 0 10px;
@@ -76,15 +82,22 @@ export default function ProductList ({ list }) {
                                 >
                                     {item.price.toLocaleString('ko-KR')}원
                                 </span>
-                                <span
-                                    css={css`
-                                        font-size: 16px;
-                                        font-weight: 500;
-                                        color: #ff0000;
-                                    `}
-                                >
-                                    {item.saleRate}%
-                                </span>
+                                {
+                                    item.saleRate > 0
+                                        ? (
+                                            <span
+                                                css={css`
+                                                    font-size: 16px;
+                                                    font-weight: 500;
+                                                    color: #ff0000;
+                                                `}
+                                            >
+                                                {item.saleRate}%
+                                            </span>
+                                        )
+                                        : null
+                                }
+
                             </div>
                             <small
                                 css={css` */}
@@ -101,4 +114,9 @@ export default function ProductList ({ list }) {
             })}
         </div>
     )
+}
+
+ProductList.proptype = {
+    list: array,
+    showMenuSearch: bool
 }

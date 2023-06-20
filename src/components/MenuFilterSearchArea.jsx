@@ -1,7 +1,8 @@
 import { css } from '@emotion/react'
 import React, { useState } from 'react'
 import Icon from './design/Icon'
-export default function MenuSearch () {
+import { bool } from 'prop-types'
+export default function MenuSearch ({ show }) {
     const [searchText, setSearchText] = useState('')
     const handleInput = (e) => {
         console.log(e.target.value)
@@ -10,12 +11,14 @@ export default function MenuSearch () {
     return (
         <div
             css={css`
-                position: absolute;
-                top: 107px;
+                display: ${show ? 'block' : 'none'};
+                position: fixed;
+                z-index: 2;
+                top: 105px;
                 left: 0;
                 right: 0;
                 height: 80px;
-                background: #fff;
+                background: #f9f9f9;
                 padding: 20px 15px;
             `}
         >
@@ -32,6 +35,7 @@ export default function MenuSearch () {
                     color: #aaa;
                     font-size: 16px;
                     line-height: 24px;
+                    padding-left: 30px;
                 `}
                     type="text"
                     placeholder="상품명 검색"
@@ -61,4 +65,8 @@ export default function MenuSearch () {
             </form>
         </div>
     )
+}
+
+MenuSearch.proptype = {
+    show: bool
 }
