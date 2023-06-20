@@ -33,10 +33,10 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                         >
                             <img
                                 css={css`
-                            width: 100%;
-                            margin: 0 auto;
-                            object-fit: cover;
-                        `}
+                                width: 100%;
+                                margin: 0 auto;
+                                object-fit: cover;
+                            `}
                                 src={item.imageUrl}
                                 onError={e => (e.target.src = NO_IMAGE_URL)}
                             />
@@ -62,6 +62,10 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                                     line-break: anywhere;
                                     font-weight: bold;
                                     margin: 4px 0;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    overflow: hidden;
                                 `}
                             >
                                 {item.goodsName}
