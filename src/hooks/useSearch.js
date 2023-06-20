@@ -26,7 +26,8 @@ const useSearch = () => {
         }, [])
     }
 }
-const defaultFilter = item => !item.isSoldOut
+const defaultFilter = () => true
+
 function makeSearchState (activeKeywords, keyword, isAdd = false) {
     const newActiveKeywords = [...activeKeywords.filter(value => value !== keyword)]
     if (isAdd) newActiveKeywords.push(keyword)

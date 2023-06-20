@@ -48,7 +48,7 @@ function App () {
             <ProductList
                 openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
                 openSearchArea={isSearchArea}
-                list={list.filter(filterCallback).filter(searchCallback)}
+                list={(list.filter(filterCallback)).filter(searchCallback)}
             />
         </>
     )

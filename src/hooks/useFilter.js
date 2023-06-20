@@ -3,7 +3,7 @@ import { ACTION_TYPE } from '../constants'
 
 const useFilter = () => {
     const initialState = {
-        filterCallback: () => true,
+        filterCallback: filterFunc.default,
         activeFilters: []
     }
     const [filterState, dispatch] = useReducer(reducer, initialState)
@@ -29,9 +29,7 @@ function makeFilterState (activeFilters, filterKey, isAdd = false) {
     return {
         activeFilters: newActiveFilters,
         filterCallback: newActiveFilters.length
-            ? item => {
-                return newActiveFilters.some(key => filterFunc[key](item))
-            }
+            ? item => newActiveFilters.some(key => filterFunc[key](item))
             : filterFunc.default
     }
 }
