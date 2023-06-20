@@ -1,20 +1,18 @@
-import { css } from '@emotion/react'
 import React from 'react'
+import SoldOutOverlay from './SoldOutOverlay'
+import { css } from '@emotion/react'
 import { array, bool } from 'prop-types'
-import SoldoutOverlay from './SoldOutOverlay'
-export default function ProductList ({ list, showFilterArea, showSearchArea }) {
+import { NO_IMAGE_URL } from '../constants'
+export default function ProductList ({ list, openFilterArea, openSearchArea }) {
     if (!list.length) {
         return (
             <div>Empty data</div>
         )
     }
-    const handlerImgError = e => {
-        e.target.src = 'https://image.msscdn.net/musinsaUI/homework/data/img.jpg'
-    }
     return (
         <div
             css={css`
-                margin-top: ${120 + (showFilterArea ? 50 : 0) + (showSearchArea ? 80 : 0)}px;
+                margin-top: ${120 + (openFilterArea ? 50 : 0) + (openSearchArea ? 80 : 0)}px;
                 display: flex;
                 flex-wrap: wrap;
             `}
@@ -40,9 +38,9 @@ export default function ProductList ({ list, showFilterArea, showSearchArea }) {
                             object-fit: cover;
                         `}
                                 src={item.imageUrl}
-                                onError={handlerImgError}
+                                onError={e => (e.target.src = NO_IMAGE_URL)}
                             />
-                            {item.isSoldOut ? <SoldoutOverlay /> : null}
+                            {item.isSoldOut ? <SoldOutOverlay /> : null}
                         </div>
 
                         <div
@@ -100,7 +98,7 @@ export default function ProductList ({ list, showFilterArea, showSearchArea }) {
 
                             </div>
                             <small
-                                css={css` */}
+                                css={css`
                                     text-decoration: line-through;
                                     color: #aaa;
                                     line-height: 11.55px;
@@ -118,5 +116,6 @@ export default function ProductList ({ list, showFilterArea, showSearchArea }) {
 
 ProductList.proptype = {
     list: array,
-    showMenuSearch: bool
+    openFilterArea: bool,
+    openSearchArea: bool
 }

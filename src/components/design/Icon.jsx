@@ -1,26 +1,27 @@
 import React from 'react'
-import { string, number, object } from 'prop-types'
+import { string, number, object, func } from 'prop-types'
 import * as icons from './icons.js'
 
-export default function Icon ({ name, style, size = 22 }) {
+export default function Icon ({ name, style, size = 16, onClick }) {
     if (!icons[name]) {
         return (
             <></>
         )
     }
-
     return (
         <img
             src={icons[name]}
             style={style}
             width={size}
             height={size}
+            onClick={onClick}
         />
     )
 }
 
 Icon.proptype = {
-    style: object,
     name: string,
-    size: number
+    style: object,
+    size: number,
+    onClick: func
 }

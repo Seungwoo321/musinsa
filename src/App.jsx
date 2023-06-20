@@ -1,61 +1,54 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AppBar from './components/AppBar'
 import MenuFilter from './components/MenuFilter'
+import MenuFilterArea from './components/MenuFilterArea'
 import MenuFilterSearchArea from './components/MenuFilterSearchArea'
 import ProductList from './components/ProductList'
-import { fetchGoods } from './api.js'
-import MenuFilterArea from './components/MenuFilterArea'
 import { FILTER_LABEL } from './constants'
+import { fetchGoods } from './api.js'
+import useFilter from './hooks/useFilter.js'
+import useSearch from './hooks/useSearch.js'
 function App () {
-    const [items, setItems] = useState([])
-    const [filterItems, setFilterItems] = useState([])
-    const [showSearchArea, setShowSearchArea] = useState(false)
-    const [showFilterArea, setShowFilterArea] = useState(false)
-    const [activeKeys, setActiveKeys] = useState([])
+    const [list, setList] = useState([])
+    const { filterCallback, activeFilters, onAddFilter, onRemoveFilter } = useFilter()
+    const { searchCallback, activeKeywords, searchText, isSearchArea, toggleSearchArea, onInputSearch, onAddSearchFilter, onRemoveSearchFilter } = useSearch()
     useEffect(() => {
-        fetchGoods(0).then(result => {
-            setItems(result.list)
-            setFilterItems(result.list.filter(item => !item.isSoldOut))
-        })
-    }, [])
-    const handleFilterActive = (fn, keys) => {
-        setShowFilterArea(keys.length > 0)
-        setActiveKeys(keys)
-        setFilterItems(items.filter(fn))
-    }
-    const handleSearchActive = () => {
-
-    }
-    const handleSearchSelect = (isActive) => {
-        setShowSearchArea(isActive)
-    }
-    const handleCloseFilter = (keys) => {
-        setActiveKeys(keys)
-    }
+        return () => {
+            fetchGoods(0).then(result => {
+                setList(result.list)
+            })
+        }
+    }, [setList])
     return (
         <>
             <AppBar />
             <MenuFilter
                 filterLabel={FILTER_LABEL}
-                activeKeys={activeKeys}
-                onFilterActive={handleFilterActive}
-                onSearchActive={handleSearchActive}
-                onSearchSelect={handleSearchSelect}
+                activeFilters={activeFilters}
+                activeKeywords={activeKeywords}
+                onAddFilter={onAddFilter}
+                onRemoveFilter={onRemoveFilter}
+                isSearchArea={isSearchArea}
+                toggleSearchArea={toggleSearchArea}
             />
             <MenuFilterArea
                 filterLabel={FILTER_LABEL}
-                show={showFilterArea}
-                activeKeys={activeKeys}
-                onCloseFilter={handleCloseFilter}
+                activeFilters={activeFilters}
+                activeKeywords={activeKeywords}
+                onRemoveFilter={onRemoveFilter}
+                onRemoveSearchFilter={onRemoveSearchFilter}
             />
             <MenuFilterSearchArea
-                show={showSearchArea}
-                showFilterArea={showFilterArea}
+                searchText={searchText}
+                open={isSearchArea}
+                openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
+                onInputSearch={onInputSearch}
+                onAddSearchFilter={onAddSearchFilter}
             />
             <ProductList
-                showFilterArea={showFilterArea}
-                showSearchArea={showSearchArea}
-                list={filterItems}
+                openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
+                openSearchArea={isSearchArea}
+                list={list.filter(filterCallback).filter(searchCallback)}
             />
         </>
     )

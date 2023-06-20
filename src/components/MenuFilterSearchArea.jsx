@@ -1,20 +1,23 @@
 import { css } from '@emotion/react'
-import React, { useState } from 'react'
+import React from 'react'
 import Icon from './design/Icon'
-import { bool } from 'prop-types'
-export default function MenuSearch ({ show }) {
-    const [searchText, setSearchText] = useState('')
-    const handleInput = (e) => {
-        console.log(e.target.value)
+import { bool, string, func } from 'prop-types'
+export default function MenuFilterSearchArea ({ searchText, open, openFilterArea, onInputSearch, onAddSearchFilter }) {
+    const handleInput = e => {
+        onInputSearch(e.target.value)
     }
-
+    const handleKeyUp = e => {
+        if (e.key === 'Enter' && e.target.value !== '') {
+            onAddSearchFilter(e.target.value)
+        }
+    }
     return (
         <div
             css={css`
-                display: ${show ? 'block' : 'none'};
+                display: ${open ? 'block' : 'none'};
                 position: fixed;
                 z-index: 2;
-                top: 105px;
+                top: ${105 + (openFilterArea ? 50 : 0)}px;
                 left: 0;
                 right: 0;
                 height: 80px;
@@ -26,6 +29,7 @@ export default function MenuSearch ({ show }) {
                 css={css`
                     position: relative;
                 `}
+                onSubmit={e => e.preventDefault()}
             >
                 <input
                     css={css`
@@ -34,39 +38,31 @@ export default function MenuSearch ({ show }) {
                     border: 1px solid #ccc;
                     color: #aaa;
                     font-size: 16px;
-                    line-height: 24px;
                     padding-left: 30px;
                 `}
                     type="text"
                     placeholder="상품명 검색"
-                    defaultValue=""
+                    value={searchText}
                     onInput={handleInput}
+                    onKeyUp={handleKeyUp}
                 />
-                {
-                    searchText
-                        ? null
-                        : (
-                            <span
-                                css={css`
-                                    position: absolute;
-                                    top: 8px;
-                                    left: 8px;
-                                    color: #aaa;
-                                    font-size: 16px;
-                                `}
-                            >
-                                <Icon name="search" />
-                                {/* <span>
-                                    상품명 검색
-                                </span> */}
-                            </span>
-                        )
-                }
+                <span
+                    css={css`
+                        position: absolute;
+                        top: 8px;
+                        left: 8px;
+                    `}
+                >
+                    <Icon name="Search" size={20} style={{ verticalAlign: 'middle' }} />
+                </span>
             </form>
         </div>
     )
 }
 
-MenuSearch.proptype = {
-    show: bool
+MenuFilterSearchArea.proptype = {
+    searchText: string,
+    open: bool,
+    openFilterArea: bool,
+    onInputSearch: func
 }

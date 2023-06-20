@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from '@emotion/react'
-export default function SoldoutOverlay () {
+export default function SoldOutOverlay () {
     return (
         <div css={css`
                 position: absolute;

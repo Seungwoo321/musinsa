@@ -1,19 +1,21 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { node, bool, func } from 'prop-types'
-// import Icon from '../design/Icon'
 
 const defaultStyle = css`
     padding: 7px 15px;
     font-size: 14px;
     line-height: 21px;
-    color: #000;
-    border: 1px solid #eee;
-    background: #fff;
-    border-radius: 4px;
-    margin-left: 5px;
-    cursor: pointer;
     height: 35px;
+
+    color: #000;
+    background: #fff;
+
+    border-radius: 4px;
+    border: 1px solid #eee;
+
+    cursor: pointer;
+    margin-left: 5px;
 `
 const accentStyle = css`
     color: #fff;
@@ -31,7 +33,7 @@ const smallStyle = css`
     line-height: 18px;
     height: 26px;
 `
-export default function Button ({ active, accent, children, onClick, round, small }) {
+export default function Button ({ active, accent, round, small, children, onClick }) {
     return (
         <button
             css={[
@@ -51,6 +53,8 @@ export default function Button ({ active, accent, children, onClick, round, smal
 Button.proptype = {
     active: bool,
     accent: bool,
+    round: bool,
+    small: bool,
     children: node,
     onClick: func
 }
