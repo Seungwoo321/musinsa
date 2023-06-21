@@ -1,20 +1,15 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { object, array, func } from 'prop-types'
-import Button from './design/Button'
-import Icon from './design/Icon'
+import Button from './Button'
+import Icon from './Icon'
 
 export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeywords, onRemoveFilter, onRemoveSearchFilter }) {
-    const handleRemoveFilter = (key) => {
-        onRemoveFilter(key)
-    }
-    const handleRemoveSearchFilter = (key) => {
-        onRemoveSearchFilter(key)
-    }
+    const isVisible = activeFilters.length || activeKeywords.length
     return (
         <div
             css={css`
-                display: ${(activeFilters.length || activeKeywords.length) ? 'block' : 'none'};
+                display: ${isVisible ? 'block' : 'none'};
                 position: fixed;
                 z-index: 3;
                 top: 105px;
@@ -23,6 +18,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                 height: 50px;
                 background: #fff;
                 padding: 12px 10px;
+                overflow: scroll;
             `}
         >
             {activeKeywords.map(key => {
@@ -35,7 +31,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                         accent
                     >
                         {key}
-                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => handleRemoveSearchFilter(key)} />
+                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => onRemoveSearchFilter(key)} />
                     </Button>
                 )
             })}
@@ -49,7 +45,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                         accent
                     >
                         {filterLabel[key]}
-                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => handleRemoveFilter(key)} />
+                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => onRemoveFilter(key)} />
                     </Button>
                 )
             })}

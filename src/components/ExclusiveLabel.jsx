@@ -21,7 +21,3 @@ export default function ExclusiveLabel () {
         </div>
     )
 }
-
-ExclusiveLabel.propTypes = {
-
-}

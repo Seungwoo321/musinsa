@@ -2,15 +2,14 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { bool, string, func, node } from 'prop-types'
 import { TEXT_CONTENT } from '../constants'
-import Icon from './design/Icon'
+import Icon from './Icon'
 
-export default function MenuFilterSearchArea ({ searchText, open, openFilterArea, onInputSearch, onAddSearchFilter, children }) {
-    const handleInput = e => {
-        onInputSearch(e.target.value)
-    }
+export default function MenuFilterSearchArea ({ searchText, open, openFilterArea, onInputSearch, onAddSearchFilter, toggleSearchArea, children }) {
+    const handleInput = e => onInputSearch(e.target.value)
     const handleKeyUp = e => {
         if (e.key === 'Enter' && e.target.value !== '') {
             onAddSearchFilter(e.target.value)
+            toggleSearchArea()
         }
     }
     return (
@@ -69,5 +68,6 @@ MenuFilterSearchArea.propTypes = {
     openFilterArea: bool,
     onInputSearch: func,
     onAddSearchFilter: func,
+    toggleSearchArea: func,
     children: node
 }

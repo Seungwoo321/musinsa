@@ -73,6 +73,7 @@ export default function App () {
                 openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
                 onInputSearch={onInputSearch}
                 onAddSearchFilter={onAddSearchFilter}
+                toggleSearchArea={toggleSearchArea}
             >
                 <AutoComplete
                     completeNames={filterList.map(item => item.goodsName)}

@@ -1,17 +1,8 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import { array, object, func, bool } from 'prop-types'
-import Button from './design/Button'
-import Icon from './design/Icon'
-const StyledMenuFilter = styled.div`
-    position: fixed;
-    z-index: 3;
-    top: 50px;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    padding: 10px 2px;
-`
+import Button from './Button'
+import Icon from './Icon'
 
 export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords, onAddFilter, onRemoveFilter, isSearchArea, toggleSearchArea }) {
     const handleFilterSelect = (key) => {
@@ -22,7 +13,16 @@ export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords
         }
     }
     return (
-        <StyledMenuFilter>
+        <div css={css`
+                position: fixed;
+                z-index: 3;
+                top: 50px;
+                left: 0;
+                right: 0;
+                background-color: #fff;
+                padding: 10px 2px;
+            `}
+        >
             <Button
                 round
                 accent={isSearchArea}
@@ -53,7 +53,7 @@ export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords
             >
                 {filterLabel.soldOut}
             </Button>
-        </StyledMenuFilter>
+        </div>
     )
 }
 MenuFilter.propTypes = {

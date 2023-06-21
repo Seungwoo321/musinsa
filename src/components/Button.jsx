@@ -2,18 +2,15 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { node, bool, func } from 'prop-types'
 
-const defaultStyle = css`
+const buttonStyle = css`
     padding: 7px 15px;
     font-size: 14px;
     line-height: 21px;
     height: 35px;
-
     color: #000;
     background: #fff;
-
     border-radius: 4px;
     border: 1px solid #eee;
-
     cursor: pointer;
     margin-left: 5px;
 `
@@ -37,11 +34,11 @@ export default function Button ({ active, accent, round, small, children, onClic
     return (
         <button
             css={[
-                defaultStyle,
-                active ? activeStyle : null,
-                accent ? accentStyle : null,
-                round ? roundStyle : null,
-                small ? smallStyle : null
+                buttonStyle,
+                active && activeStyle,
+                accent && accentStyle,
+                round && roundStyle,
+                small && smallStyle
             ]}
             onClick={onClick}
         >

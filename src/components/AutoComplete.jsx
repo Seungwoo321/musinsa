@@ -1,12 +1,18 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { array, string } from 'prop-types'
+import AutoCompleteItem from './AutoCompleteItem'
+
 export default function AutoComplte ({ completeNames, searchText }) {
     const regex = new RegExp(searchText, 'g')
+    const filteredNames = completeNames.filter(
+        (name) => searchText !== '' && name.match(regex)
+    )
+    const shouldDisplay = filteredNames.length > 0
     return (
         <ul
             css={css`
-                    display: ${searchText.length ? 'block' : 'none'};
+                    display: ${shouldDisplay ? 'block' : 'none'};
                     border: 1px solid #f1f1f1;
                     position: absolute;
                     top: 80px;
@@ -21,23 +27,9 @@ export default function AutoComplte ({ completeNames, searchText }) {
                     overflow: scroll;
                 `}
         >
-            {completeNames.filter(name => searchText !== '' && name.match(regex)).map((name, index) => {
-                return (
-                    <li
-                        css={css`
-                                padding: 10px;
-                                font-size: 14px;
-                            `}
-                        key={index}
-                    >
-                        <span
-                            dangerouslySetInnerHTML={{
-                                __html: name.replace(regex, (match) => `<span style="background-color: #ffff00;">${match}</span>`)
-                            }}
-                        />
-                    </li>
-                )
-            })}
+            {filteredNames.map((name, index) => (
+                <AutoCompleteItem key={index} name={name} regex={regex} />
+            ))}
         </ul>
     )
 }

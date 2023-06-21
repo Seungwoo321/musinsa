@@ -2,6 +2,7 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { TEXT_CONTENT } from '../constants'
 import EmptyImage from '../assets/icon-general-empty.png'
+
 export default function Empty () {
     return (
         <div
@@ -13,7 +14,7 @@ export default function Empty () {
         >
             <img src={EmptyImage} alt="empty" />
             <div>
-                {TEXT_CONTENT.TEXT_CONTENT}
+                {TEXT_CONTENT.EMPTY_RESULT}
             </div>
 
         </div>
