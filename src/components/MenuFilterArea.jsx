@@ -6,6 +6,10 @@ import Icon from './Icon'
 
 export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeywords, onRemoveFilter, onRemoveSearchFilter }) {
     const isVisible = activeFilters.length || activeKeywords.length
+    const handleResetFilter = () => {
+        activeFilters.forEach(key => onRemoveFilter(key))
+        activeKeywords.forEach(key => onRemoveSearchFilter(key))
+    }
     return (
         <div
             css={css`
@@ -17,7 +21,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                 right: 0;
                 height: 50px;
                 background: #fff;
-                padding: 12px 10px;
+                padding: 12px 30px 12px 10px;
                 overflow: scroll;
             `}
         >
@@ -49,6 +53,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                     </Button>
                 )
             })}
+            <Icon name="Refresh" size={22} style={{ position: 'absolute', right: '18px', top: '12px' }} onClick={handleResetFilter} />
         </div>
     )
 }
