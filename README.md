@@ -31,9 +31,9 @@
 
 - node.js v16.14.2
 - Vite v4.39
-- Rreact v18.2.0
+- React v18.2.0
 - Emotion v11.11.0
-- EsLint: Standard Style
+- ESLint: Standard Style
 
 ## 설치 및 실행
 
