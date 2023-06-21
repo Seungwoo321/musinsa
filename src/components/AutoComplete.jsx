@@ -1,6 +1,6 @@
 import React from 'react'
-import { array, string } from 'prop-types'
 import { css } from '@emotion/react'
+import { array, string } from 'prop-types'
 export default function AutoComplte ({ completeNames, searchText }) {
     const regex = new RegExp(searchText, 'g')
     return (

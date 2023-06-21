@@ -7,3 +7,7 @@ export function debounce (func, delay = 300) {
         }, delay)
     }
 }
+
+export function displayPrice (number) {
+    return number.toLocaleString('ko-KR') + '원'
+}

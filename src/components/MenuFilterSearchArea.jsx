@@ -1,7 +1,8 @@
-import { css } from '@emotion/react'
 import React from 'react'
-import Icon from './design/Icon'
+import { css } from '@emotion/react'
 import { bool, string, func, node } from 'prop-types'
+import { TEXT_CONTENT } from '../constants'
+import Icon from './design/Icon'
 
 export default function MenuFilterSearchArea ({ searchText, open, openFilterArea, onInputSearch, onAddSearchFilter, children }) {
     const handleInput = e => {
@@ -42,7 +43,7 @@ export default function MenuFilterSearchArea ({ searchText, open, openFilterArea
                     padding-left: 30px;
                 `}
                     type="text"
-                    placeholder="상품명 검색"
+                    placeholder={TEXT_CONTENT.INPUT_PLACEHOLDER}
                     value={searchText}
                     onInput={handleInput}
                     onKeyUp={handleKeyUp}

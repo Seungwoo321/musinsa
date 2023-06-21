@@ -1,5 +1,6 @@
 import React from 'react'
 import { css } from '@emotion/react'
+import { TEXT_CONTENT } from '../constants'
 import EmptyImage from '../assets/icon-general-empty.png'
 export default function Empty () {
     return (
@@ -12,13 +13,9 @@ export default function Empty () {
         >
             <img src={EmptyImage} alt="empty" />
             <div>
-                검색 결과 없음
+                {TEXT_CONTENT.TEXT_CONTENT}
             </div>
 
         </div>
     )
-}
-
-Empty.propTypes = {
-
 }

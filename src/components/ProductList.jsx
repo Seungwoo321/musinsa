@@ -1,10 +1,11 @@
 import React from 'react'
-import SoldOutOverlay from './SoldOutOverlay'
 import { css } from '@emotion/react'
 import { array, bool } from 'prop-types'
 import { NO_IMAGE_URL } from '../constants'
-import Empty from './Empty'
+import { displayPrice } from '../libs'
+import SoldOutOverlay from './SoldOutOverlay'
 import ExclusiveLabel from './ExclusiveLabel'
+import Empty from './Empty'
 
 export default function ProductList ({ list, openFilterArea, openSearchArea }) {
     const marginTop = 115 + (openFilterArea ? 50 : 0) + (openSearchArea ? 80 : 0)
@@ -98,7 +99,7 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                                         font-weight: 500;
                                     `}
                                 >
-                                    {item.price.toLocaleString('ko-KR')}원
+                                    {displayPrice(item.price)}
                                 </span>
                                 {
                                     item.saleRate > 0
@@ -124,7 +125,7 @@ export default function ProductList ({ list, openFilterArea, openSearchArea }) {
                                     line-height: 11.55px;
                                 `}
                             >
-                                {item.normalPrice.toLocaleString('ko-KR')}원
+                                {displayPrice(item.normalPrice)}
                             </small>
                         </div>
                     </div>

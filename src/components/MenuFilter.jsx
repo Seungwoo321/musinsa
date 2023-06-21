@@ -1,8 +1,8 @@
-import styled from '@emotion/styled'
 import React from 'react'
+import styled from '@emotion/styled'
+import { array, object, func, bool } from 'prop-types'
 import Button from './design/Button'
 import Icon from './design/Icon'
-import { array, object, func, bool } from 'prop-types'
 const StyledMenuFilter = styled.div`
     position: fixed;
     z-index: 3;

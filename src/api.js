@@ -13,10 +13,12 @@ const request = async url => {
             cache[url] = json.data
             return json.data
         }
-        throw new Error('API 통신 실패')
+        throw new Error('데이터를 가져오는 중에 오류가 발생했습니다')
     } catch (error) {
         alert(error.message)
     }
 }
 
-export const fetchGoods = async (step = 0) => request(`${API_END_POINT}/musinsaUI/homework/data/goods${step}.json`)
+export function fetchGoods (step = 0) {
+    return request(`${API_END_POINT}/musinsaUI/homework/data/goods${step}.json`)
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import AppBar from './components/AppBar'
 import MenuFilter from './components/MenuFilter'
 import MenuFilterArea from './components/MenuFilterArea'
@@ -6,14 +6,13 @@ import MenuFilterSearchArea from './components/MenuFilterSearchArea'
 import AutoComplete from './components/AutoComplete'
 import ProductList from './components/ProductList'
 import LoadingSpinner from './components/LoadingSpinner'
-import { FILTER_LABEL } from './constants'
+import { FILTER_LABEL, MAX_REQUST } from './constants'
 import { fetchGoods } from './api.js'
 import useFilter from './hooks/useFilter.js'
 import useSearch from './hooks/useSearch.js'
 import useInfiniteScroll from './hooks/useInfiniteScroll'
 
-function App () {
-    const MAX_REQUST = 4
+export default function App () {
     const [list, setList] = useState([])
     const [currentRequest, setCurrentRequest] = useState(0)
     const { filterCallback, activeFilters, onAddFilter, onRemoveFilter } = useFilter()
@@ -27,25 +26,27 @@ function App () {
         onAddSearchFilter,
         onRemoveSearchFilter
     } = useSearch()
-    const filterList = list.filter(filterCallback).filter(searchCallback)
 
     useEffect(() => {
-        return () => {
-            fetchGoods(0).then(result => {
-                setList(result.list)
-            })
+        const fetchData = async () => {
+            const result = await fetchGoods(0)
+            setList(result.list)
         }
-    }, [setList])
+        fetchData()
+    }, [])
 
-    const handleInfiniteScroll = () => {
+    const handleInfiniteScroll = useCallback(() => {
         if (currentRequest + 1 === MAX_REQUST) return
         setCurrentRequest(currentRequest + 1)
         fetchGoods(currentRequest + 1).then(result => {
             setList(list.concat(result.list))
         })
-    }
+    }, [currentRequest, list])
 
     useInfiniteScroll(handleInfiniteScroll)
+
+    const filterList = list.filter(filterCallback).filter(searchCallback)
+    const showLoadingSpinner = currentRequest + 1 < MAX_REQUST
 
     return (
         <>
@@ -83,9 +84,7 @@ function App () {
                 openSearchArea={isSearchArea}
                 list={filterList}
             />
-            {currentRequest + 1 < MAX_REQUST ? <LoadingSpinner /> : null}
+            {showLoadingSpinner && <LoadingSpinner />}
         </>
     )
 }
-
-export default App

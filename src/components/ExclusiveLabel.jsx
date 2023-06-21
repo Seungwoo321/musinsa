@@ -1,5 +1,6 @@
-import { css } from '@emotion/react'
 import React from 'react'
+import { css } from '@emotion/react'
+import { TEXT_CONTENT } from '../constants'
 
 export default function ExclusiveLabel () {
     return (
@@ -16,7 +17,7 @@ export default function ExclusiveLabel () {
                 left: 10px;
             `}
         >
-            단독
+            {TEXT_CONTENT.LABEL_EXCLUSIVE}
         </div>
     )
 }

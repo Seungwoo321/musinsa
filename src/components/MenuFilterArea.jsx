@@ -1,8 +1,8 @@
 import React from 'react'
+import { css } from '@emotion/react'
+import { object, array, func } from 'prop-types'
 import Button from './design/Button'
 import Icon from './design/Icon'
-import { object, array, func } from 'prop-types'
-import { css } from '@emotion/react'
 
 export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeywords, onRemoveFilter, onRemoveSearchFilter }) {
     const handleRemoveFilter = (key) => {
