@@ -39,13 +39,12 @@ function App () {
 
     const handleInfiniteScroll = () => {
         if (currentRequest + 1 === MAX_REQUST) return
-        setTimeout(() => {
-            setCurrentRequest(currentRequest + 1)
-            fetchGoods(currentRequest + 1).then(result => {
-                setList(list.concat(result.list))
-            })
-        }, 1000)
+        setCurrentRequest(currentRequest + 1)
+        fetchGoods(currentRequest + 1).then(result => {
+            setList(list.concat(result.list))
+        })
     }
+
     useInfiniteScroll(handleInfiniteScroll)
 
     return (

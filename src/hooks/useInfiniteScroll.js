@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-
+import { debounce } from '../libs'
 function useInfiniteScroll (callback) {
     useEffect(() => {
         const handleScroll = () => {
@@ -8,10 +8,11 @@ function useInfiniteScroll (callback) {
                 callback()
             }
         }
-        window.addEventListener('scroll', handleScroll)
+        const debouncedHandleScroll = debounce(handleScroll, 500)
+        window.addEventListener('scroll', debouncedHandleScroll)
 
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            window.removeEventListener('scroll', debouncedHandleScroll)
         }
     }, [callback])
 }
