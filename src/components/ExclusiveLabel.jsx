@@ -13,7 +13,7 @@ export default function ExclusiveLabel () {
                 background-color: #18a286;
                 color: #fff;
                 position: absolute;
-                bottom: -6px;
+                bottom: -10px;
                 left: 10px;
             `}
         >

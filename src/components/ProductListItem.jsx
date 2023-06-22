@@ -16,18 +16,21 @@ export default function ProductListItem ({ item }) {
             css={css`
                 background: #fff;
                 flex-basis: calc(50%);
+                display: flex;
+                flex-direction: column;
             `}
         >
             <div
                 css={css`
                     position: relative;
+                    height: 60vw;
                 `}
             >
                 <img
                     css={css`
                         width: 100%;
-                        margin: 0 auto;
-                        object-fit: cover;
+                        height: 100%;
+                        object-fit: fill;
                     `}
                     src={item.imageUrl}
                     alt={item.goodsName}
@@ -52,6 +55,7 @@ export default function ProductListItem ({ item }) {
                 </div>
                 <div
                     css={css`
+                        min-height: 44px;
                         line-break: anywhere;
                         font-weight: bold;
                         margin: 4px 0;

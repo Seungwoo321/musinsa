@@ -1,6 +1,6 @@
 import React from 'react'
 import { css } from '@emotion/react'
-import { node, bool, func } from 'prop-types'
+import { object, node, bool, func } from 'prop-types'
 
 const buttonStyle = css`
     padding: 7px 15px;
@@ -30,9 +30,10 @@ const smallStyle = css`
     line-height: 18px;
     height: 26px;
 `
-export default function Button ({ active, accent, round, small, children, onClick }) {
+export default function Button ({ style, active, accent, round, small, children, onClick }) {
     return (
         <button
+            style={style}
             css={[
                 buttonStyle,
                 active && activeStyle,
@@ -48,6 +49,7 @@ export default function Button ({ active, accent, round, small, children, onClic
 }
 
 Button.propTypes = {
+    style: object,
     active: bool,
     accent: bool,
     round: bool,

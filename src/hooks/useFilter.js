@@ -12,9 +12,9 @@ function makeFilterState (activeFilters, filterKey, isAdd = false) {
     const newActiveFilters = [...activeFilters.filter(value => value !== filterKey)]
     if (isAdd) newActiveFilters.push(filterKey)
     const filterFunc = {
-        sale: item => item.isSale && (newActiveFilters.includes('soldOut') ? item.isSoldOut : !item.isSoldOut),
-        exclusive: item => item.isExclusive && (newActiveFilters.includes('soldOut') ? item.isSoldOut : !item.isSoldOut),
-        soldOut: item => item.isSoldOut
+        sale: item => newActiveFilters.includes('soldOut') ? item.isSale : item.isSale && !item.isSoldOut,
+        exclusive: item => newActiveFilters.includes('soldOut') ? item.isExclusive : item.isExclusive && !item.isSoldOut,
+        soldOut: () => true
     }
     return {
         activeFilters: newActiveFilters,

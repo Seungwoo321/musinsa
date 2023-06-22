@@ -1,38 +1,11 @@
 # 무신사 프론트엔드 그룹 과제
 
-이 프로젝트는 Frontend 공통과제.pdf 파일에 수록된 요구사항과 Figma 디자인 화면에서 확인되는  요구사항들을 구현한 React 프로젝트 입니다.
-
-## 주요 기능
-
-### 요구사항 구현 체크 리스트
-
-- [x] 상단 타이틀(MUSINSA)과 필터는 페이지 상단에 고정됩니다.
-- [x] 단독상품의 경우 Label이 표기 됩니다.
-- [x] 세일상품의 경우 할인율과 기존 가격이 표기됩니다.
-- [x] 스크롤이 목록의 하단까지 내려오면 다음 항목이 노출되는 무한 스크롤로 동작합니다.
-- [x] 필터는 토글 기능을 가지고 있으며 활성화 시 목록에 적용됩니다.
-- [x] 필터 내 검색의 경우 조회된 데이터에 한해서 검색되며, 키 입력에 따른 자동완성으로 검색됩니다.
-- [x] 품절상품의 경우 기본적으로 노출되지 않으며, 필터에서 품절포함 선택 시 추가로 노출됩니다.
-- [x] 상품명은 두 줄까지만 표시합니다.
-- [x] 검색 활성 상태의 화면을 구현합니다.
-- [x] 검색 완료 상태의 화면을 구현합니다.
-- [x] 필터 활성 상태의 화면을 구현합니다.
-- [x] 검색 결과 없음 상태의 화면을 구현합니다.
-- [x] 일반 상태의 화면을 구현합니다.
-- [x] 상품 이미지가 없을 경우 대체 이미지를 출력합니다.
-
-### 요구사항 구현에 대한 추가 내용
-
-- Figma 요구사항 중 Refresh 버튼은 필터 적용을 초기화(Reset) 합니다.
-- PDF 요구사항 중 검색 자동완성 기능은 검색 결과 중에서 입력한 텍스트가 포함된 상품 이름의 목록을 보여줍니다.
-- PDF 요구사항 중 검색 후 엔터를 입력하면 검색 활성 상태에서 검색 비활성 및 검색 완료 상태가 됩니다.
+이 프로젝트는 무신사 프론트엔드 그룹 과제를 위한 리포지토리 입니다.
 
 ## 개발 환경
 
 - node.js v16.14.2
-- Vite v4.39
 - React v18.2.0
-- Emotion v11.11.0
 - ESLint: Standard Style
 
 ## 설치 및 실행
@@ -59,55 +32,30 @@ cd dist
 live-server
 ```
 
-## 프로젝트 구조
+## 주요 기능
 
-```bash
-├── README.md
-├── index.html
-├── package-lock.json
-├── package.json
-├── public
-│   └── vite.svg
-├── src
-│   ├── App.jsx
-│   ├── api.js
-│   ├── assets
-│   │   ├── icon-general-empty.png
-│   │   ├── icons
-│   │   │   ├── Close.svg
-│   │   │   ├── Refresh.svg
-│   │   │   ├── Search.svg
-│   │   │   └── ccommon_loading_spinner.svg
-│   │   ├── logo_musinsa.svg
-│   │   └── soldout.png
-│   ├── components
-│   │   ├── AppBar.jsx
-│   │   ├── AutoComplete.jsx
-│   │   ├── AutoCompleteItem.jsx
-│   │   ├── Button.jsx
-│   │   ├── Empty.jsx
-│   │   ├── ExclusiveLabel.jsx
-│   │   ├── Icon.jsx
-│   │   ├── LoadingSpinner.jsx
-│   │   ├── MenuFilter.jsx
-│   │   ├── MenuFilterArea.jsx
-│   │   ├── MenuFilterSearchArea.jsx
-│   │   ├── ProductList.jsx
-│   │   ├── ProductListItem.jsx
-│   │   ├── SoldOutOverlay.jsx
-│   │   └── icons.js
-│   ├── constants
-│   │   └── index.js
-│   ├── hooks
-│   │   ├── useFilter.js
-│   │   ├── useInfiniteScroll.js
-│   │   └── useSearch.js
-│   ├── index.css
-│   ├── libs
-│   │   └── index.js
-│   └── main.jsx
-└── vite.config.js
-```
+### 요구사항 구현 체크 리스트
+
+- [x] 상단 타이틀(MUSINSA)과 필터는 페이지 상단에 고정됩니다.
+- [x] 단독상품의 경우 Label이 표기 됩니다.
+- [x] 세일상품의 경우 할인율과 기존 가격이 표기됩니다.
+- [x] 스크롤이 목록의 하단까지 내려오면 다음 항목이 노출되는 무한 스크롤로 동작합니다.
+- [x] 필터는 토글 기능을 가지고 있으며 활성화 시 목록에 적용됩니다.
+- [x] 필터 내 검색의 경우 조회된 데이터에 한해서 검색되며, 키 입력에 따른 자동완성으로 검색됩니다.
+- [x] 품절상품의 경우 기본적으로 노출되지 않으며, 필터에서 품절포함 선택 시 추가로 노출됩니다.
+- [x] 상품명은 두 줄까지만 표시합니다.
+- [x] 검색 활성 상태의 화면을 구현합니다.
+- [x] 검색 완료 상태의 화면을 구현합니다.
+- [x] 필터 활성 상태의 화면을 구현합니다.
+- [x] 검색 결과 없음 상태의 화면을 구현합니다.
+- [x] 일반 상태의 화면을 구현합니다.
+- [x] 상품 이미지가 없을 경우 대체 이미지를 출력합니다.
+
+### 요구사항 구현에 대한 추가 내용
+
+- Figma 요구사항 중 Refresh 버튼은 필터 적용을 초기화(Reset) 합니다.
+- PDF 요구사항 중 검색 자동완성 기능은 검색 결과 중에서 입력한 텍스트가 포함된 상품 이름의 목록을 보여줍니다.
+- PDF 요구사항 중 검색 후 엔터를 입력하면 검색 활성 상태에서 검색 비활성 및 검색 완료 상태가 됩니다.
 
 ## 설계 및 구현
 

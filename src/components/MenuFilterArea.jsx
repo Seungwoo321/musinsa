@@ -13,7 +13,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
     return (
         <div
             css={css`
-                display: ${isVisible ? 'block' : 'none'};
+                display: ${isVisible ? 'flex' : 'none'};
                 position: fixed;
                 z-index: 3;
                 top: 105px;
@@ -21,39 +21,47 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
                 right: 0;
                 height: 50px;
                 background: #fff;
-                padding: 12px 30px 12px 10px;
-                overflow: scroll;
+                padding: 12px 10px 12px 10px;
             `}
         >
-            {activeKeywords.map(key => {
-                return (
-                    <Button
-                        small
-                        key={key}
-                        icon="close"
-                        iconSize={16}
-                        accent
-                    >
-                        {key}
-                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => onRemoveSearchFilter(key)} />
-                    </Button>
-                )
-            })}
-            {activeFilters.map(key => {
-                return (
-                    <Button
-                        small
-                        key={key}
-                        icon="close"
-                        iconSize={16}
-                        accent
-                    >
-                        {filterLabel[key]}
-                        <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => onRemoveFilter(key)} />
-                    </Button>
-                )
-            })}
-            <Icon name="Refresh" size={22} style={{ position: 'absolute', right: '18px', top: '12px' }} onClick={handleResetFilter} />
+            <div
+                css={css`
+                    overflow-x: auto;
+                    white-space: nowrap;
+                `}
+            >
+                {activeKeywords.map(key => {
+                    return (
+                        <Button
+                            small
+                            key={key}
+                            icon="close"
+                            iconSize={16}
+                            accent
+                        >
+                            {key}
+                            <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => onRemoveSearchFilter(key)} />
+                        </Button>
+                    )
+                })}
+                {activeFilters.map(key => {
+                    return (
+                        <Button
+                            small
+                            key={key}
+                            icon="close"
+                            iconSize={16}
+                            accent
+                        >
+                            {filterLabel[key]}
+                            <Icon name="Close" size={10} style={{ marginLeft: '6px' }} onClick={() => onRemoveFilter(key)} />
+                        </Button>
+                    )
+                })}
+            </div>
+            <Button style={{ position: 'absolute', bottom: '10px', right: '3px', border: 'none' }}>
+                <Icon name="Refresh" size={22} onClick={handleResetFilter} />
+            </Button>
         </div>
     )
 }
