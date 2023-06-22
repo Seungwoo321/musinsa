@@ -46,7 +46,9 @@ npm run preview
 ### 디렉토리 구조
 
 ```bash
+.
 ├── README.md
+├── deploy.sh
 ├── index.html
 ├── package-lock.json
 ├── package.json
@@ -55,7 +57,6 @@ npm run preview
 │   └── vite.svg
 ├── src
 │   ├── App.jsx
-│   ├── api.js
 │   ├── assets
 │   │   ├── icon-general-empty.png
 │   │   ├── icons
@@ -112,7 +113,8 @@ npm run preview
 │   ├── index.css
 │   ├── libs
 │   │   └── index.js
-│   └── main.jsx
+│   ├── main.jsx
+│   └── remote.js
 └── vite.config.js
 ```
 
