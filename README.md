@@ -52,7 +52,6 @@ npm run preview
 ├── index.html
 ├── package-lock.json
 ├── package.json
-├── product.html
 ├── public
 │   └── vite.svg
 ├── src
