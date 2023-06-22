@@ -7,10 +7,6 @@
 ## 개발 환경
 
 - node.js v16.14.2
-- React v18.2.0
-- ESLint: Standard Style
-- emotion v11.11
-- vite v4.3.9
 
 ## 설치 및 실행
 
@@ -41,6 +37,11 @@ npm run preview
 기본 <http://localhost:4173/musinsa> 로 접속
 
 ## 구성 및 선정 이유
+
+- React v18.2.0: React는 널리 사용되는 프론트엔드 라이브러리로 컴포넌트 기반 개발과 가독성 있는 코드 작성을 위해 선택했습니다.
+- ESLint: Standard Style: 통일된 코딩 스타일과 코드 품질을 유지하기 위해 ESLint를 Standard Style 설정으로 사용했습니다.
+- emotion v11.11: Emotion은 JavaScript를 사용한 CSS-in-JS 라이브러리로, 컴포넌트 스타일링을 더욱 쉽고 유연하게 처리하기 위해 선택했습니다.
+- vite v4.3.9: Vite는 빠른 개발 환경을 제공하는 빌드 도구로, 개발 효율성을 높이고 개발 시간을 단축하기 위해 선택했습니다.
 
 ### 디렉토리 구조
 
