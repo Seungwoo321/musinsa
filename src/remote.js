@@ -19,6 +19,6 @@ const request = async url => {
     }
 }
 
-export function fetchGoods (step = 0) {
-    return request(`${API_END_POINT}/musinsaUI/homework/data/goods${step}.json`)
+export function fetchGoods (page = 0) {
+    return request(`${API_END_POINT}/musinsaUI/homework/data/goods${page}.json`)
 }

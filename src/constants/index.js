@@ -12,7 +12,7 @@ export const TEXT_CONTENT = {
 
 export const NO_IMAGE_URL = 'https://image.msscdn.net/musinsaUI/homework/data/img.jpg'
 
-export const MAX_REQUST = 4
+export const MAX_PAGE = 4
 
 export const ACTION_TYPE = {
     ADD_FILTER: 'ADD_FILTER',

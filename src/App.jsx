@@ -1,20 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import AppBar from './components/AppBar'
-import AppFilterBar from './components/AppFilterBar'
-import AppFilterArea from './components/AppFilterArea'
-import AppSearchArea from './components/AppSearchArea'
-import AutoComplete from './components/AutoComplete'
-import ProductList from './components/ProductList'
-import LoadingSpinner from './components/LoadingSpinner'
-import { FILTER_LABEL, MAX_REQUST } from './constants'
-import { fetchGoods } from './api.js'
-import useFilter from './hooks/useFilter.js'
-import useSearch from './hooks/useSearch.js'
-import useInfiniteScroll from './hooks/useInfiniteScroll'
+import AppBar from '@/components/AppBar'
+import AppFilterBar from '@/components/AppFilterBar'
+import AppFilterArea from '@/components/AppFilterArea'
+import AppSearchArea from '@/components/AppSearchArea'
+import AutoComplete from '@/components/AutoComplete'
+import ProductList from '@/components/ProductList'
+import LoadingSpinner from '@/components/LoadingSpinner'
+import { FILTER_LABEL, MAX_PAGE } from '@/constants'
+import { fetchGoods } from '@/remote'
+import useFilter from '@/hooks/useFilter'
+import useSearch from '@/hooks/useSearch'
+import useInfiniteScroll from '@/hooks/useInfiniteScroll'
 
 export default function App () {
     const [list, setList] = useState([])
-    const [currentRequest, setCurrentRequest] = useState(0)
+    const [currentPage, setCurrentPage] = useState(0)
     const { filterCallback, activeFilters, onAddFilter, onRemoveFilter } = useFilter()
     const {
         searchCallback,
@@ -36,16 +36,16 @@ export default function App () {
     }, [])
     const filterList = list.filter(filterCallback).filter(searchCallback)
     const completeNames = filterList.map(item => item.goodsName)
-    const showLoadingSpinner = currentRequest + 1 < MAX_REQUST
+    const showLoadingSpinner = currentPage + 1 < MAX_PAGE
     const openFilterArea = activeFilters.length > 0 || activeKeywords.length > 0
     const handleInfiniteScroll = useCallback(() => {
         if (!filterList.length) return
-        if (currentRequest + 1 === MAX_REQUST) return
-        setCurrentRequest(currentRequest + 1)
-        fetchGoods(currentRequest + 1).then(result => {
+        if (currentPage + 1 === MAX_PAGE) return
+        setCurrentPage(currentPage + 1)
+        fetchGoods(currentPage + 1).then(result => {
             setList(list.concat(result.list))
         })
-    }, [currentRequest, list, filterList])
+    }, [currentPage, list, filterList])
 
     useInfiniteScroll(handleInfiniteScroll)
 
