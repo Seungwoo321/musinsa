@@ -11,8 +11,7 @@ const initialState = {
 }
 
 function makeSearchState (activeKeywords, keyword, isAdd = false) {
-    const newActiveKeywords = [...activeKeywords.filter(value => value !== keyword)]
-    if (isAdd) newActiveKeywords.push(keyword)
+    const newActiveKeywords = ((isAdd && [keyword]) || []).concat([...activeKeywords.filter(value => value !== keyword)])
     return {
         activeKeywords: newActiveKeywords,
         searchCallback: newActiveKeywords.length
