@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-기본 <http://localhost:5173/> 로 접속
+기본 <http://localhost:5173/musinsa> 로 접속
 
 ### 프로덕션 환경 실행
 
@@ -36,7 +36,7 @@ npm run build
 npm run preview
 ```
 
-기본 <http://localhost:4173/> 로 접속
+기본 <http://localhost:4173/musinsa> 로 접속
 
 ## 구성 및 선정 이유
 
