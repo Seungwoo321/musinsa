@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { debounce } from '../libs'
+import { debounce } from '@/libs'
 
 function useInfiniteScroll (callback) {
     useEffect(() => {

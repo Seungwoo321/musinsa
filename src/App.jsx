@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import AppBar from './components/AppBar'
-import MenuFilter from './components/MenuFilter'
-import MenuFilterArea from './components/MenuFilterArea'
-import MenuFilterSearchArea from './components/MenuFilterSearchArea'
+import AppFilterBar from './components/AppFilterBar'
+import AppFilterArea from './components/AppFilterArea'
+import AppSearchArea from './components/AppSearchArea'
 import AutoComplete from './components/AutoComplete'
 import ProductList from './components/ProductList'
 import LoadingSpinner from './components/LoadingSpinner'
@@ -52,7 +52,7 @@ export default function App () {
     return (
         <>
             <AppBar />
-            <MenuFilter
+            <AppFilterBar
                 filterLabel={FILTER_LABEL}
                 activeFilters={activeFilters}
                 activeKeywords={activeKeywords}
@@ -61,14 +61,14 @@ export default function App () {
                 isSearchArea={isSearchArea}
                 toggleSearchArea={toggleSearchArea}
             />
-            <MenuFilterArea
+            <AppFilterArea
                 filterLabel={FILTER_LABEL}
                 activeFilters={activeFilters}
                 activeKeywords={activeKeywords}
                 onRemoveFilter={onRemoveFilter}
                 onRemoveSearchFilter={onRemoveSearchFilter}
             />
-            <MenuFilterSearchArea
+            <AppSearchArea
                 searchText={searchText}
                 open={isSearchArea}
                 openFilterArea={openFilterArea}
@@ -82,7 +82,7 @@ export default function App () {
                     onAddSearchFilter={onAddSearchFilter}
                     toggleSearchArea={toggleSearchArea}
                 />
-            </MenuFilterSearchArea>
+            </AppSearchArea>
             <ProductList
                 openFilterArea={openFilterArea}
                 openSearchArea={isSearchArea}

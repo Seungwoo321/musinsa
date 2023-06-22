@@ -1,40 +1,42 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { array, bool } from 'prop-types'
-import Empty from './Empty'
+import Empty from '@/components/Empty'
 import ProductListItem from './ProductListItem'
+import { StyledProductEmpty, StyledProductList } from './style'
 
-const makeMarginTop = (openFilterArea, openSearchArea) => 115 + (openFilterArea ? 50 : 0) + (openSearchArea ? 80 : 0)
+const makeMarginTop = (openFilterArea, openSearchArea) => {
+    let marginTop = 115
+    if (openFilterArea) marginTop += 50
+    if (openSearchArea) marginTop += 80
+    return marginTop
+}
 
 export default function ProductList ({ list, openFilterArea, openSearchArea }) {
     const marginTop = makeMarginTop(openFilterArea, openSearchArea)
     if (!list.length) {
         return (
-            <div
+            <StyledProductEmpty
                 css={css`
-                background: #fff;
                 margin-top: ${marginTop}px;
                 height: calc(100vh - ${marginTop}px)
             `}
             >
                 <Empty />
-            </div>
+            </StyledProductEmpty>
         )
     }
     return (
-        <div
+        <StyledProductList
             css={css`
-                background: #fff;
                 margin-top: ${marginTop}px;
-                display: flex;
-                flex-wrap: wrap;
                 min-height: calc(100vh - ${marginTop}px)
             `}
         >
             {list.map((item, index) => (
                 <ProductListItem key={index} item={item} />
             ))}
-        </div>
+        </StyledProductList>
     )
 }
 

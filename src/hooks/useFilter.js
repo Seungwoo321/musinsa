@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from 'react'
-import { ACTION_TYPE } from '../constants'
+import { ACTION_TYPE } from '@/constants'
 
 const defaultFilter = item => !item.isSoldOut
 

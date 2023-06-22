@@ -1,10 +1,10 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { object } from 'prop-types'
-import { NO_IMAGE_URL } from '../constants'
-import { displayPrice } from '../libs'
-import SoldOutOverlay from './SoldOutOverlay'
-import ExclusiveLabel from './ExclusiveLabel'
+import { NO_IMAGE_URL } from '@/constants'
+import { displayPrice } from '@/libs'
+import SoldOutOverlay from '@/components/SoldOutOverlay'
+import ExclusiveLabel from '@/components/ExclusiveLabel'
 
 export default function ProductListItem ({ item }) {
     const handleError = (e) => {

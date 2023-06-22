@@ -1,10 +1,10 @@
 import React from 'react'
-import { css } from '@emotion/react'
 import { array, object, func, bool } from 'prop-types'
-import Button from './Button'
-import Icon from './Icon'
+import { StyledAppFilterBar } from './style'
+import Button from '@/components/Button'
+import Icon from '@/components/Icon'
 
-export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords, onAddFilter, onRemoveFilter, isSearchArea, toggleSearchArea }) {
+export default function AppFilterBar ({ filterLabel, activeFilters, activeKeywords, onAddFilter, onRemoveFilter, isSearchArea, toggleSearchArea }) {
     const handleFilterSelect = (key) => {
         if (activeFilters.includes(key)) {
             onRemoveFilter(key)
@@ -13,16 +13,7 @@ export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords
         }
     }
     return (
-        <div css={css`
-                position: fixed;
-                z-index: 3;
-                top: 50px;
-                left: 0;
-                right: 0;
-                background-color: #fff;
-                padding: 10px 2px;
-            `}
-        >
+        <StyledAppFilterBar>
             <Button
                 round
                 accent={isSearchArea}
@@ -53,10 +44,10 @@ export default function MenuFilter ({ filterLabel, activeFilters, activeKeywords
             >
                 {filterLabel.soldOut}
             </Button>
-        </div>
+        </StyledAppFilterBar>
     )
 }
-MenuFilter.propTypes = {
+AppFilterBar.propTypes = {
     filterLabel: object,
     activeFilters: array,
     activeKeywords: array,

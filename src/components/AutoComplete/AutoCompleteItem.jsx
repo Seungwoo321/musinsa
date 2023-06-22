@@ -1,7 +1,6 @@
 import React from 'react'
-import { css } from '@emotion/react'
 import { string, object, func } from 'prop-types'
-
+import { StyledAutoCompleteItem } from './style'
 export default function AutoCompleteItem ({ name, regex, onAddSearchFilter, toggleSearchArea }) {
     const highlightedName = name.replace(regex, (match) => `<span style="background-color: #ffff00;">${match}</span>`)
     const handleClick = () => {
@@ -9,16 +8,12 @@ export default function AutoCompleteItem ({ name, regex, onAddSearchFilter, togg
         onAddSearchFilter(name)
     }
     return (
-        <li
-            css={css`
-                padding: 10px;
-                font-size: 14px;
-            `}
+        <StyledAutoCompleteItem
             onClick={handleClick}
             data-value={name}
         >
             <span dangerouslySetInnerHTML={{ __html: highlightedName }} />
-        </li>
+        </StyledAutoCompleteItem>
     )
 }
 
