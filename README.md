@@ -2,6 +2,8 @@
 
 무신사 프론트엔드 개발 사전 과제 프로젝트 입니다.
 
+[과제 배포 링크](https://seungwoo321.github.io/musinsa/)
+
 ## 개발 환경
 
 - node.js v16.14.2
