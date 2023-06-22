@@ -7,7 +7,7 @@ import Icon from './Icon'
 export default function MenuFilterSearchArea ({ searchText, open, openFilterArea, onInputSearch, onAddSearchFilter, toggleSearchArea, children }) {
     const handleInput = e => onInputSearch(e.target.value)
     const handleKeyUp = e => {
-        if (e.key === 'Enter' && e.target.value !== '') {
+        if (e.key === 'Enter' && e.target.value.toString().trim() !== '') {
             onAddSearchFilter(e.target.value)
             toggleSearchArea()
         }

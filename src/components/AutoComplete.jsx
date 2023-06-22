@@ -1,12 +1,12 @@
 import React from 'react'
 import { css } from '@emotion/react'
-import { array, string } from 'prop-types'
+import { array, string, func } from 'prop-types'
 import AutoCompleteItem from './AutoCompleteItem'
 
-export default function AutoComplte ({ completeNames, searchText }) {
-    const regex = new RegExp(searchText, 'g')
+export default function AutoComplte ({ completeNames, searchText, onAddSearchFilter, toggleSearchArea }) {
+    const regex = new RegExp(searchText.toString().trim(), 'g')
     const filteredNames = completeNames.filter(
-        (name) => searchText !== '' && name.match(regex)
+        (name) => searchText.toString().trim() !== '' && name.match(regex)
     )
     const shouldDisplay = filteredNames.length > 0
     return (
@@ -28,7 +28,13 @@ export default function AutoComplte ({ completeNames, searchText }) {
                 `}
         >
             {filteredNames.map((name, index) => (
-                <AutoCompleteItem key={index} name={name} regex={regex} />
+                <AutoCompleteItem
+                    key={index}
+                    name={name}
+                    regex={regex}
+                    onAddSearchFilter={onAddSearchFilter}
+                    toggleSearchArea={toggleSearchArea}
+                />
             ))}
         </ul>
     )
@@ -36,5 +42,7 @@ export default function AutoComplte ({ completeNames, searchText }) {
 
 AutoComplte.propTypes = {
     completeNames: array,
-    searchText: string
+    searchText: string,
+    onAddSearchFilter: func,
+    toggleSearchArea: func
 }

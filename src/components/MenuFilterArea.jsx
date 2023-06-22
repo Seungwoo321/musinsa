@@ -26,6 +26,7 @@ export default function MenuFilterArea ({ filterLabel, activeFilters, activeKeyw
         >
             <div
                 css={css`
+                    width: calc(100% - 50px);
                     overflow-x: auto;
                     white-space: nowrap;
                 `}

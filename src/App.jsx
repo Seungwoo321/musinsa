@@ -34,19 +34,20 @@ export default function App () {
         }
         fetchData()
     }, [])
-
+    const filterList = list.filter(filterCallback).filter(searchCallback)
+    const completeNames = filterList.map(item => item.goodsName)
+    const showLoadingSpinner = currentRequest + 1 < MAX_REQUST
+    const openFilterArea = activeFilters.length > 0 || activeKeywords.length > 0
     const handleInfiniteScroll = useCallback(() => {
+        if (!filterList.length) return
         if (currentRequest + 1 === MAX_REQUST) return
         setCurrentRequest(currentRequest + 1)
         fetchGoods(currentRequest + 1).then(result => {
             setList(list.concat(result.list))
         })
-    }, [currentRequest, list])
+    }, [currentRequest, list, filterList])
 
     useInfiniteScroll(handleInfiniteScroll)
-
-    const filterList = list.filter(filterCallback).filter(searchCallback)
-    const showLoadingSpinner = currentRequest + 1 < MAX_REQUST
 
     return (
         <>
@@ -70,18 +71,20 @@ export default function App () {
             <MenuFilterSearchArea
                 searchText={searchText}
                 open={isSearchArea}
-                openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
+                openFilterArea={openFilterArea}
                 onInputSearch={onInputSearch}
                 onAddSearchFilter={onAddSearchFilter}
                 toggleSearchArea={toggleSearchArea}
             >
                 <AutoComplete
-                    completeNames={filterList.map(item => item.goodsName)}
+                    completeNames={completeNames}
                     searchText={searchText}
+                    onAddSearchFilter={onAddSearchFilter}
+                    toggleSearchArea={toggleSearchArea}
                 />
             </MenuFilterSearchArea>
             <ProductList
-                openFilterArea={activeFilters.length > 0 || activeKeywords.length > 0}
+                openFilterArea={openFilterArea}
                 openSearchArea={isSearchArea}
                 list={filterList}
             />

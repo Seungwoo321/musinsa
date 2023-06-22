@@ -25,12 +25,12 @@ function reducer (state, action) {
     case ACTION_TYPE.ADD_SEARCH_FILTER:
         return {
             ...state,
-            ...makeSearchState(state.activeKeywords, action.keyword, true)
+            ...makeSearchState(state.activeKeywords, action.keyword.toString().trim(), true)
         }
     case ACTION_TYPE.REMOVE_SEARCH_FILTER:
         return {
             ...state,
-            ...makeSearchState(state.activeKeywords, action.keyword)
+            ...makeSearchState(state.activeKeywords, action.keyword.toString().trim())
         }
     case ACTION_TYPE.TOGGLE_SEARCH_AREA:
         return {
@@ -50,6 +50,7 @@ function reducer (state, action) {
 const useSearch = () => {
     const [searchState, dispatch] = useReducer(reducer, initialState)
     const toggleSearchArea = useCallback(() => {
+        dispatch({ type: ACTION_TYPE.INPUT_SEARCH_TEXT, keyword: '' })
         dispatch({ type: ACTION_TYPE.TOGGLE_SEARCH_AREA })
     }, [])
     const onInputSearch = useCallback(keyword => {
