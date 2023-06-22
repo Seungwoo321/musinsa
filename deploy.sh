@@ -11,6 +11,6 @@ git config --local user.name "Seungwoo Lee"
 git config --local user.email "seungwoo321@gmail.com"
 git add -A
 git commit -m "deploy for musinsa"
-git push -f git@github.com:Seungwoo321/musinsa-frontend.git master:gh-pages
+git push -f git@github.com:Seungwoo321/musinsa-frontend.git main:gh-pages
 
 cd -
